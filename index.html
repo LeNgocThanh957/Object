@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button onclick="showList()">LIST</button>
+<button onclick="showFormAdd()">ADD</button>
+<div id="disp"></div>
+<script>
+    let danhSach = [
+        {
+            name: "Samsung s24 ultra",
+            price: 31990000,
+        },
+        {
+            name: "Iphone 15 Pro Max 1TB",
+            price: 42690000,
+        },
+        {
+            name: "Xiaomi 14 Pro 5G",
+            price: 16250000,
+        },
+        {
+            name: "OPPO Find N3 5G",
+            price: 41990000,
+        },
+    ];
+
+    function showList() {
+        let str = '<h1>Danh sách sản phẩm</h1>';
+        str += `<h2>Số lượng sản phẩm: ${danhSach.length} </h2>`
+        for (let i = 0; i < danhSach.length; i++) {
+            str += `<h3>${danhSach[i].name}<br>${"Giá: " + danhSach[i].price} <br> <button onclick="edit(${i})">Edit</button></h3>`
+        }
+        document.getElementById("disp").innerHTML = str;
+    }
+
+    function showFormAdd() {
+        let str = `<input id="inp"> <br> <input id="inp2"> <button onclick="add()">ADD</button>`;
+        document.getElementById("disp").innerHTML = str;
+    }
+
+    function add() {
+        let name = document.getElementById("inp").value;
+        let price = document.getElementById("inp2").value;
+        danhSach.push({name: name, price: price});
+        showList();
+    }
+
+    function edit(index) {
+        let str = `<input id="inp" value="${danhSach[index].name}"> <br> <input id="inp2" value="${danhSach[index].price}"> <button onclick="save(${index})">SAVE</button>`;
+        document.getElementById("disp").innerHTML = str;
+    }
+
+    function save(index) {
+        let name = document.getElementById("inp").value;
+        let price = document.getElementById("inp2").value;
+        danhSach[index].name = name;
+        danhSach[index].price = price;
+        showList();
+    }
+
+</script>
+</body>
+</html>
